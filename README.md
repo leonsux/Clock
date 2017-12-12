@@ -26,4 +26,7 @@ canvas+JS+面向对象 实现的创意时钟
       sColor: 'pink',//秒针颜色
       tColor: 'blue'//文字颜色
     });
-    ```
+    ```
+### 效果
+
+![](http://upload-images.jianshu.io/upload_images/3629578-d1b9a35c7ef42a69.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
