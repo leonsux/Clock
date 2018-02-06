@@ -2,6 +2,8 @@
 
 canvas+JS+面向对象 实现的创意时钟
 
+ [演示](http://leonsux.top/Clock/)
+
 ### 使用方法
 
 1. 在页面中添加 canvas 标签，要有id
