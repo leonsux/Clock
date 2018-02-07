@@ -18,7 +18,7 @@ Clock.prototype = {
 		this.can.style.background = this.bgColor;
 		this.can.width = this.size;
 		this.can.height = this.size;
-
+		// 画笔配置
 		this.ctx.lineCap = 'round';
 		this.ctx.textBaseline = "middle";
 		this.ctx.textAlign = "center";
@@ -26,7 +26,7 @@ Clock.prototype = {
 		this.go();
 		setInterval(function(){
 			this.go();
-		}.bind(this), 10);
+		}.bind(this), 1000);
 	},
 	go: function(){
 		var date = new Date();
@@ -49,6 +49,7 @@ Clock.prototype = {
 		this.drawS(bl_s * 2 * this.pi);
 		this.drawT(h, m, s);
 	},
+	// 画基线
 	drawB: function(){
 		this.ctx.strokeStyle = this.baseColor;
 		this.ctx.lineWidth = this.size/75;
@@ -57,36 +58,30 @@ Clock.prototype = {
 		this.ctx.stroke();
 		this.ctx.closePath();
 	},
+	//  H， M， S 时分秒
 	drawH: function(aim){
-		this.ctx.strokeStyle = this.hColor;
-		this.ctx.lineWidth = this.size/15;//20; //15 = x/n
-		this.ctx.beginPath();
-		this.ctx.arc(this.size/2, this.size/2, this.size/2 - 20, -this.pi/2, aim - this.pi/2);
-		this.ctx.stroke();
-		this.ctx.closePath();
+		this.draw(this.hColor, this.size/15, aim)
 	},
 	drawM: function(aim){
-		this.ctx.strokeStyle = this.mColor;
-		this.ctx.lineWidth = this.size/25;//12;  //300 12 = x/n
-		this.ctx.beginPath();
-		this.ctx.arc(this.size/2, this.size/2, this.size/2 - 20, -this.pi/2, aim - this.pi/2);
-		this.ctx.stroke();
-		this.ctx.closePath();
+		this.draw(this.mColor, this.size/25, aim)
 	},
 	drawS: function(aim){
-		this.ctx.strokeStyle = this.sColor;
-		this.ctx.lineWidth = this.size/75;//4; 300/4 = x/n
-		this.ctx.beginPath();
-		this.ctx.arc(this.size/2, this.size/2, this.size/2 - 20, -this.pi/2, aim - this.pi/2);
-		this.ctx.stroke();
-		this.ctx.closePath();
+		this.draw(this.sColor, this.size/75, aim)
 	},
+	// 文字 ： PM: 04:12
 	drawT: function(h, m, s){
 		this.ctx.fillStyle = this.tColor;
 		h = h < 10 ? '0' + h : h;
 		m = m < 10 ? '0' + m : m;
 		s = s < 10 ? '0' + s : s;
 		this.ctx.fillText(what+' '+h+':'+m+':'+s, this.size/2, this.size/2);
-		// this.ctx.fillText(what, this.size/2, this.size/2-10);
+	},
+	draw: function(color, size, aim){
+		this.ctx.strokeStyle = color;
+		this.ctx.lineWidth = size;
+		this.ctx.beginPath();
+		this.ctx.arc(this.size/2, this.size/2, this.size/2 - 20, -this.pi/2, aim - this.pi/2);
+		this.ctx.stroke();
+		this.ctx.closePath();
 	}
 }
